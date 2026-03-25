@@ -84,7 +84,7 @@ export default function HomePage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(160deg, #1a0f08 0%, #3b2314 40%, #5a3520 100%)",
+          background: "linear-gradient(160deg, #0d1f10 0%, #1a3d20 45%, #2a5c2e 100%)",
           overflow: "hidden",
         }}
       >
@@ -118,6 +118,28 @@ export default function HomePage() {
 
         {/* Hero Content */}
         <div style={{ textAlign: "center", zIndex: 1, padding: "0 1.5rem", maxWidth: "800px" }}>
+          {/* Logo mark */}
+          <div data-animate style={{ marginBottom: "1.25rem", display: "flex", justifyContent: "center" }}>
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}>
+              {/* Lotus SVG logo */}
+              <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="32" r="31" stroke="rgba(201,168,76,0.4)" strokeWidth="0.8"/>
+                {/* Outer petals */}
+                <path d="M32 12 C28 20 24 26 32 32 C40 26 36 20 32 12Z" fill="rgba(201,168,76,0.18)" stroke="rgba(201,168,76,0.7)" strokeWidth="0.7"/>
+                <path d="M12 32 C20 28 26 24 32 32 C26 40 20 36 12 32Z" fill="rgba(201,168,76,0.18)" stroke="rgba(201,168,76,0.7)" strokeWidth="0.7"/>
+                <path d="M52 32 C44 28 38 24 32 32 C38 40 44 36 52 32Z" fill="rgba(201,168,76,0.18)" stroke="rgba(201,168,76,0.7)" strokeWidth="0.7"/>
+                <path d="M32 52 C28 44 24 38 32 32 C40 38 36 44 32 52Z" fill="rgba(201,168,76,0.18)" stroke="rgba(201,168,76,0.7)" strokeWidth="0.7"/>
+                {/* Inner petals */}
+                <path d="M18 18 C22 24 26 26 32 32 C26 26 24 22 18 18Z" fill="rgba(201,168,76,0.25)" stroke="rgba(201,168,76,0.8)" strokeWidth="0.6"/>
+                <path d="M46 18 C40 24 38 26 32 32 C38 26 40 22 46 18Z" fill="rgba(201,168,76,0.25)" stroke="rgba(201,168,76,0.8)" strokeWidth="0.6"/>
+                <path d="M18 46 C22 40 26 38 32 32 C26 38 24 40 18 46Z" fill="rgba(201,168,76,0.25)" stroke="rgba(201,168,76,0.8)" strokeWidth="0.6"/>
+                <path d="M46 46 C40 40 38 38 32 32 C38 38 40 40 46 46Z" fill="rgba(201,168,76,0.25)" stroke="rgba(201,168,76,0.8)" strokeWidth="0.6"/>
+                {/* Centre dot */}
+                <circle cx="32" cy="32" r="3.5" fill="var(--gold)" opacity="0.9"/>
+              </svg>
+            </div>
+          </div>
+
           <div data-animate style={{ marginBottom: "1.5rem" }}>
             <span
               style={{
@@ -210,7 +232,7 @@ export default function HomePage() {
             {[...Array(5)].map((_, i) => (
               <Star key={i} size={14} fill="var(--gold)" color="var(--gold)" />
             ))}
-            <span style={{ color: "rgba(245,239,230,0.55)", fontSize: "0.8rem", marginLeft: "0.25rem" }}>
+            <span style={{ color: "rgba(220,240,220,0.7)", fontSize: "0.8rem", marginLeft: "0.25rem" }}>
               4.8 · 200+ reviews
             </span>
           </div>
@@ -239,7 +261,7 @@ export default function HomePage() {
         <div style={{ maxWidth: "1100px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "5rem", alignItems: "center" }}>
           <div>
             <p className="section-label" style={{ marginBottom: "0.75rem" }}>Our Story</p>
-            <h2 className="section-title" style={{ marginBottom: "1.5rem" }}>
+            <h2 className="section-title" style={{ marginBottom: "1.5rem", color: "var(--green)" }}>
               Where Ancient Wisdom Meets Modern Luxury
             </h2>
             <div className="gold-divider" style={{ margin: "0 0 1.5rem 0" }} />
@@ -274,7 +296,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Perks ── */}
-      <section style={{ padding: "5rem 1.5rem", background: "var(--brown)", position: "relative", overflow: "hidden" }}>
+      <section style={{ padding: "5rem 1.5rem", background: "var(--green)", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")", pointerEvents: "none" }} />
         <div style={{ maxWidth: "1100px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "2.5rem", position: "relative" }}>
           {perks.map((p, i) => (
@@ -283,7 +305,7 @@ export default function HomePage() {
                 {p.icon}
               </div>
               <h3 style={{ fontFamily: "Cormorant Garamond, serif", fontSize: "1.25rem", color: "var(--gold-light)", marginBottom: "0.5rem" }}>{p.title}</h3>
-              <p style={{ color: "rgba(245,239,230,0.55)", fontSize: "0.85rem", lineHeight: 1.7 }}>{p.desc}</p>
+              <p style={{ color: "rgba(220,240,220,0.75)", fontSize: "0.85rem", lineHeight: 1.7 }}>{p.desc}</p>
             </div>
           ))}
         </div>
@@ -335,7 +357,7 @@ export default function HomePage() {
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "4rem" }}>
             <p className="section-label" style={{ marginBottom: "0.75rem" }}>What Guests Say</p>
-            <h2 className="section-title">Stories of Serenity</h2>
+            <h2 className="section-title" style={{ color: "var(--green)" }}>Stories of Serenity</h2>
             <div className="gold-divider" />
           </div>
 
@@ -379,7 +401,7 @@ export default function HomePage() {
       </section>
 
       {/* ── CTA Banner ── */}
-      <section style={{ padding: "8rem 1.5rem", background: "linear-gradient(160deg, var(--charcoal) 0%, var(--brown) 100%)", textAlign: "center", position: "relative", overflow: "hidden" }}>
+      <section style={{ padding: "8rem 1.5rem", background: "linear-gradient(160deg, var(--green-dark) 0%, var(--green) 100%)", textAlign: "center", position: "relative", overflow: "hidden" }}>
         <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 70%)", pointerEvents: "none" }} />
         <div style={{ position: "relative" }}>
           <p className="section-label" style={{ marginBottom: "1rem" }}>Ready to Restore?</p>

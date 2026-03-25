@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
 
 const navLinks = [
@@ -37,14 +38,14 @@ export default function Header() {
                 zIndex: 100,
                 transition: "all 0.4s ease",
                 background: scrolled || !isHome
-                    ? "rgba(245, 239, 230, 0.97)"
+                    ? "rgba(13, 31, 16, 0.97)"
                     : "transparent",
                 backdropFilter: scrolled || !isHome ? "blur(12px)" : "none",
                 borderBottom: scrolled || !isHome
-                    ? "1px solid rgba(201, 168, 76, 0.2)"
+                    ? "1px solid rgba(201, 168, 76, 0.18)"
                     : "none",
                 boxShadow: scrolled
-                    ? "0 4px 30px rgba(59, 35, 20, 0.08)"
+                    ? "0 4px 30px rgba(0, 0, 0, 0.3)"
                     : "none",
             }}
         >
@@ -63,46 +64,21 @@ export default function Header() {
                 {/* Logo */}
                 <Link
                     href="/"
-                    style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.6rem" }}
+                    style={{ textDecoration: "none", display: "flex", alignItems: "center" }}
                 >
-                    <div
+                    <Image
+                        src="/logo.jpg"
+                        alt="Sukhontherapy Massage & Spa"
+                        width={scrolled ? 52 : 64}
+                        height={scrolled ? 52 : 64}
                         style={{
-                            width: "36px",
-                            height: "36px",
-                            background: "linear-gradient(135deg, var(--brown), var(--brown-light))",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            borderRadius: "2px",
+                            borderRadius: "50%",
+                            objectFit: "cover",
+                            transition: "width 0.4s ease, height 0.4s ease",
+                            filter: "drop-shadow(0 2px 8px rgba(201,168,76,0.35))",
                         }}
-                    >
-                        <Sparkles size={18} color="var(--gold-light)" />
-                    </div>
-                    <div>
-                        <div
-                            style={{
-                                fontFamily: "Cormorant Garamond, serif",
-                                fontSize: "1.25rem",
-                                fontWeight: "600",
-                                color: "var(--brown)",
-                                lineHeight: 1,
-                                letterSpacing: "0.02em",
-                            }}
-                        >
-                            Sukhontherapy
-                        </div>
-                        <div
-                            style={{
-                                fontFamily: "Inter, sans-serif",
-                                fontSize: "0.6rem",
-                                letterSpacing: "0.2em",
-                                textTransform: "uppercase",
-                                color: "var(--gold)",
-                            }}
-                        >
-                            Massage & Spa
-                        </div>
-                    </div>
+                        priority
+                    />
                 </Link>
 
                 {/* Desktop Nav */}
@@ -117,7 +93,7 @@ export default function Header() {
                                 letterSpacing: "0.12em",
                                 textTransform: "uppercase",
                                 textDecoration: "none",
-                                color: pathname === link.href ? "var(--gold)" : "var(--brown)",
+                                color: pathname === link.href ? "var(--gold)" : "rgba(220,240,220,0.85)",
                                 fontWeight: pathname === link.href ? "600" : "400",
                                 transition: "color 0.3s ease",
                                 borderBottom: pathname === link.href ? "1px solid var(--gold)" : "1px solid transparent",
@@ -157,7 +133,7 @@ export default function Header() {
                         </>
                     ) : (
                         <>
-                            <Link href="/login" style={{ textDecoration: "none", color: "var(--brown)", fontSize: "0.8rem", letterSpacing: "0.08em" }}>
+                            <Link href="/login" style={{ textDecoration: "none", color: "rgba(220,240,220,0.8)", fontSize: "0.8rem", letterSpacing: "0.08em" }}>
                                 Login
                             </Link>
                             <Link href="/booking" className="btn-primary" style={{ padding: "0.65rem 1.5rem", fontSize: "0.78rem" }}>
@@ -170,7 +146,7 @@ export default function Header() {
                 {/* Mobile hamburger */}
                 <button
                     onClick={() => setMobileOpen(!mobileOpen)}
-                    style={{ background: "none", border: "none", cursor: "pointer", color: "var(--brown)", display: "none" }}
+                    style={{ background: "none", border: "none", cursor: "pointer", color: "var(--gold-light)", display: "none" }}
                     className="show-mobile"
                 >
                     {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -181,8 +157,8 @@ export default function Header() {
             {mobileOpen && (
                 <div
                     style={{
-                        background: "var(--cream)",
-                        borderTop: "1px solid rgba(201, 168, 76, 0.2)",
+                        background: "rgba(13,31,16,0.98)",
+                        borderTop: "1px solid rgba(201, 168, 76, 0.18)",
                         padding: "1.5rem",
                         display: "flex",
                         flexDirection: "column",
@@ -200,7 +176,7 @@ export default function Header() {
                                 letterSpacing: "0.1em",
                                 textTransform: "uppercase",
                                 textDecoration: "none",
-                                color: pathname === link.href ? "var(--gold)" : "var(--brown)",
+                                color: pathname === link.href ? "var(--gold)" : "rgba(220,240,220,0.85)",
                                 fontWeight: pathname === link.href ? "600" : "400",
                             }}
                         >

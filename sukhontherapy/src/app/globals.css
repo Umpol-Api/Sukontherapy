@@ -2,15 +2,29 @@
 
 
 :root {
-  --cream: #f5efe6;
-  --cream-dark: #ede4d7;
-  --brown: #3b2314;
-  --brown-light: #6b3d22;
-  --gold: #c9a84c;
-  --gold-light: #e2c97e;
-  --charcoal: #1a1410;
-  --muted: #8a7060;
-  --white: #fdfaf6;
+  /* Greens */
+  --green-dark:   #0d1f10;   /* deepest hero / footer bg */
+  --green:        #1a3d20;   /* primary dark surface */
+  --green-mid:    #2a5c2e;   /* mid surface / cards */
+  --green-light:  #3a7a40;   /* lighter accents */
+
+  /* Gold — kept for luxury accent */
+  --gold:         #c9a84c;
+  --gold-light:   #e2c97e;
+
+  /* Light surfaces */
+  --cream:        #f0f4f0;   /* slightly green-tinted light bg */
+  --cream-dark:   #dce8dc;   /* section alternates */
+  --white:        #f8fdf8;   /* cards and popups */
+
+  /* Text */
+  --muted:        #5a7a5e;   /* body text on light */
+  --muted-light:  rgba(220,240,220,0.65); /* text on dark */
+  --charcoal:     #081208;   /* deepest dark */
+
+  /* Legacy aliases — so existing code keeps working */
+  --brown:        var(--green);
+  --brown-light:  var(--green-mid);
 }
 
 * {
