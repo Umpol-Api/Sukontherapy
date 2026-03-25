@@ -1,0 +1,92 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String          @id @default(cuid())
+  name         String
+  email        String          @unique
+  passwordHash String
+  phone        String?
+  role         String          @default("USER")
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  bookings     Booking[]
+  coupons      CouponPackage[]
+}
+
+model Service {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  imageUrl    String?
+  durations   String    // JSON: [{"mins":60,"price":600},{"mins":90,"price":850}]
+  category    String    @default("massage")
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  bookings    Booking[]
+  coupons     CouponPackage[]
+}
+
+model Staff {
+  id        String    @id @default(cuid())
+  name      String
+  bio       String?
+  avatarUrl String?
+  workDays  String    // JSON: [1,2,3,4,5] (0=Sun...6=Sat)
+  startTime String    @default("10:00")
+  endTime   String    @default("20:00")
+  isActive  Boolean   @default(true)
+  createdAt DateTime  @default(now())
+  bookings  Booking[]
+}
+
+model Booking {
+  id            String    @id @default(cuid())
+  userId        String
+  serviceId     String
+  staffId       String?
+  durationMins  Int
+  price         Float
+  datetime      DateTime
+  status        String    @default("PENDING_PAYMENT")
+  // PENDING_PAYMENT | AWAITING_CONFIRMATION | CONFIRMED | CANCELLED | COMPLETED
+  couponUsed    Boolean   @default(false)
+  couponId      String?
+  notes         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  user    User     @relation(fields: [userId], references: [id])
+  service Service  @relation(fields: [serviceId], references: [id])
+  staff   Staff?   @relation(fields: [staffId], references: [id])
+}
+
+model CouponPackage {
+  id             String   @id @default(cuid())
+  userId         String
+  serviceId      String
+  totalSessions  Int      @default(4)
+  usedSessions   Int      @default(0)
+  expiresAt      DateTime
+  purchasedAt    DateTime @default(now())
+  isActive       Boolean  @default(true)
+
+  user    User    @relation(fields: [userId], references: [id])
+  service Service @relation(fields: [serviceId], references: [id])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  name      String
+  rating    Int
+  comment   String
+  avatarUrl String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
